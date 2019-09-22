@@ -14,7 +14,7 @@
  * @return {ListNode}
  */
 
-var addTwoNumbers = function(l1, l2) {
+var 2 = function(l1, l2) {
     let a = 0,b = 0,flag = 0;
     let l1node =l1,l2node = l2;
     let result = new ListNode(0);
