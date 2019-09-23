@@ -14,20 +14,20 @@
  * @return {ListNode}
  */
 
-var 2 = function(l1, l2) {
-    let a = 0,b = 0,flag = 0;
-    let l1node =l1,l2node = l2;
+var addTwoNumbers = function (l1, l2){
+    let a = 0, b = 0, flag = 0;
+    let l1node = l1, l2node = l2;
     let result = new ListNode(0);
     let thenode = result;
-    while(true){
-        a = l1node === null?0:l1node.val;
-        b = l2node === null?0:l2node.val;
-        if(!l1node && !l2node &&flag===0) return result.next;
-        let node = new ListNode((a+b+flag)%10)
-        if(a+b+flag >=10) flag = 1;else flag = 0;
+    while (true){
+        a = l1node === null ? 0 : l1node.val;
+        b = l2node === null ? 0 : l2node.val;
+        if (!l1node && !l2node && flag === 0) return result.next;
+        let node = new ListNode((a + b + flag) % 10);
+        if (a + b + flag >= 10) flag = 1; else flag = 0;
         thenode.next = node;
         thenode = node;
-        l1node = l1node?l1node.next:null;
-        l2node = l2node?l2node.next:null;
+        l1node = l1node ? l1node.next : null;
+        l2node = l2node ? l2node.next : null;
     }
 };
