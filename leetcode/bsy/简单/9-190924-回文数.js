@@ -23,7 +23,7 @@
  * @return {boolean}
  */
 var isPalindrome = function(x) {
-    if(x => 0){
+    if(x >= 0){
        if((x+'') === (x+'').split('').reverse().join('')){
            return true
        } else {
