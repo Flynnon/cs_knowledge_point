@@ -41,8 +41,9 @@ var isPalindrome = function (x) {
     var arr = [];
     var i = 0;
     while (parseInt(x / 10)) {//123->12
-        arr[i] = x - 10 * parseInt(x / 10);
-        x = parseInt(x / 10);
+        var a = parseInt(x / 10)
+        arr[i] = x - 10 * a;
+        x = a;
         i++;
     }
     var l = i;
