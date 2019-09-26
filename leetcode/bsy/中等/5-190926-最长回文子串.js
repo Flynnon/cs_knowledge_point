@@ -38,7 +38,7 @@ var longestPalindrome3 = function(s) {
                     dp[i][j] = false;
                 }
             } else {
-                //比较少一位的子串是否为回文串   再判断前后是否相等
+                //比较少两位的子串是否为回文串   再判断前后是否相等
                 dp[i][j] = ( dp[i + 1][j - 1] && s[i] == s[j] ) ? true : false;
             }
             if ( j - i > max && dp[i][j]) {
