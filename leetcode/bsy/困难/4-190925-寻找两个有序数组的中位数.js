@@ -30,25 +30,49 @@
 
 //合并去重两个数组之后排序取中位数
 var findMedianSortedArrays = function(nums1, nums2) {
-    var arr = nums1.concat(nums2).sort(sortNumber)
-    if(arr.length%2==0){
-        return (arr[arr.length/2] + arr[(arr.length/2)-1])/2
+    var arr = nums1.concat(nums2).sort((a,b) => a-b)
+    let len = arr.length
+    if(len%2==0){
+        let half = len/2
+        return (arr[half] + arr[half-1])/2
     }
-    return arr[(arr.length-1)/2]
+    return arr[(len-1)/2]
 };
 
-function sortNumber(a,b)
-{
-  return a - b;
+
+
+
+
+
+//官方解
+function f1(arr1, arr2) {
+    if(arr1.length > arr2.length) {[arr1, arr2] = [arr2, arr1]}
+    const arr1Length = arr1.length, arr2Length = arr2.length;
+    let iMin = 0, iMax = arr1Length;
+    const halfLen = Math.floor((arr1Length + arr2Length + 1) / 2);   // +1 这种情况单数时取maxleft
+    while (iMin <= iMax) {
+        let i = Math.floor((iMin + iMax) / 2);   //   二分查找
+        let j = halfLen - i;
+        if(i < iMax && arr2[j - 1] > arr1[i]) {
+            iMin = i + 1;
+        } else if (i > iMin && arr1[i - 1] > arr2[j]) {
+            iMax = i - 1;
+        } else {
+            let maxLeft = 0;
+            if(i === 0) {maxLeft = arr2[j-1]}
+            else if(j ===0 ) {maxLeft = arr1[i-1]}
+            else { maxLeft = Math.max(arr1[i-1], arr2[j-1]); }
+            if ( (arr1Length + arr2Length) % 2 === 1 ) { return maxLeft; }
+
+            let  minRight = 0;
+            if (i === arr1Length) { minRight = arr2[j]; }
+            else if (j === arr2Length) { minRight = arr1[i]; }
+            else { minRight = Math.min(arr2[j], arr1[i]); }
+            return (maxLeft + minRight) / 2
+        }
+    }
+    return 0;
 }
-
-
-
-
-
-
-
-
 
 
 
