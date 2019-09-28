@@ -23,7 +23,7 @@
  * @return {boolean}
  */
 var isPalindrome = function(x) {
-    if(x => 0){
+    if(x >= 0){
        if((x+'') === (x+'').split('').reverse().join('')){
            return true
        } else {
@@ -40,9 +40,10 @@ var isPalindrome = function (x) {
     if (x < 0) return false;
     var arr = [];
     var i = 0;
-    while (parseInt(x / 10)) {//123->12
-        arr[i] = x - 10 * parseInt(x / 10);
-        x = parseInt(x / 10);
+    var a = 0
+    while (a = parseInt(x / 10)) {//123->12
+        arr[i] = x - 10 * a;
+        x = a;
         i++;
     }
     var l = i;
