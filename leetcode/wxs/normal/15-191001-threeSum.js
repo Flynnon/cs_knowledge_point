@@ -18,27 +18,25 @@
  */
 var threeSum = function (nums){
     nums = nums.sort((a, b) => a - b);
-    let res = [],sum,len=nums.length;
+    let res = [], sum, len = nums.length;
     for (let i = 0; i < len;){
-        for (let j = i + 1, k = len-1; j < k;){
+        for (let j = i + 1, k = len - 1; j < k;){
             sum = nums[i] + nums[j] + nums[k];
             if (sum > 0){
-                do{k--;}
-                while(nums[k] === nums[k+1]);
+                do k--;
+                while (nums[k] === nums[k + 1]);
             } else if (sum < 0){
-                do{
-                    j++
-                }
-                while(nums[j] === nums[j-1]);
+                do j++;
+                while (nums[j] === nums[j - 1]);
             } else{
                 res.push([nums[i], nums[j], nums[k]]);
                 j++;
                 k--;
-                while(nums[k] === nums[k+1])k--;
-                while(nums[j] === nums[j-1])j++;
+                while (nums[k] === nums[k + 1]) k--;
+                while (nums[j] === nums[j - 1]) j++;
             }
         }
-        do{ i++}while(nums[i]===nums[i-1]);
+        do{i++;} while (nums[i] === nums[i - 1]);
     }
     return res;
 };
