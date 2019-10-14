@@ -43,7 +43,7 @@ public class r7_191009_e_reverse {
         try {
             int target = Integer.parseInt(str0);
             if (x < 0) {
-                return 0 - target;
+                return 0-target;
             }
             return target;
         }catch (Exception e){
