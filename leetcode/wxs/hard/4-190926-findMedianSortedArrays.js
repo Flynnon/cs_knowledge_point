@@ -34,24 +34,31 @@ var findMedianSortedArrays = function (nums1, nums2){
             j++;
         }
     }
-    let start = i, end = len1 - 1;
-    if (j < len2){
-        start = j, end = len2 - 1;
-        while (start <= end){
-            arr.push(nums2[start++]);
-        }
-    } else{
-        while (start <= end){
-            arr.push(nums1[start++]);
-        }
+    // let start = i, end = len1 - 1;
+    while (j < len2){
+        arr.push(nums2[j++]);
     }
+    while (i < len1){
+        arr.push(nums1[i++]);
+    }
+    // if (j < len2){
+    //     start = j, end = len2 - 1;
+    //     while (start <= end){
+    //         arr.push(nums2[start++]);
+    //     }
+    // } else{
+    //     while (start <= end){
+    //         arr.push(nums1[start++]);
+    //     }
+    // }
     let mid = Math.floor(sum / 2);
-    return sum % 2 === 0?arr[mid] / 2 + arr[mid - 1] / 2:arr[mid];
+    return sum % 2 === 0 ? arr[mid] / 2 + arr[mid - 1] / 2 : arr[mid];
 };
 //排序
 var findMedianSortedArrays = function (nums1, nums2){
-    let nums = nums1.concat(nums2).sort((a,b)=>{return a-b});
-    nums1 = null;nums2 = null;
-    let len = nums.length,mid = Math.floor(len/2);
-    return len%2===0?(nums[mid]+nums[mid-1])/2:nums[mid];
-}
+    let nums = nums1.concat(nums2).sort((a, b) => {return a - b;});
+    nums1 = null;
+    nums2 = null;
+    let len = nums.length, mid = Math.floor(len / 2);
+    return len % 2 === 0 ? (nums[mid] + nums[mid - 1]) / 2 : nums[mid];
+};

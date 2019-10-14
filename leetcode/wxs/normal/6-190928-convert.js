@@ -28,6 +28,15 @@
  
  */
 /**
+ * covert 的思路都是用笔和纸画出来的，就能够发现，可以按照（numRows-1）*2 分成一个周期  譬如 LEETCODE numRows 的行数是4 那么  第一个周期就是LEETCO 六个字母
+ * 一个周期的字母数量 (numRows-1)*2
+ * 然后每个字母的位置 ：
+ * 前numRows字母的位置是竖着向下排列的，剩下的字母是斜向排列的，那么可以推导出，
+ * 前numRows字母的 坐标为:（列数，行数） （第几个周期*(numRows-1)，周期中第几个元素)
+ * 其余字母的坐标为：（列数，行数）（第几个元素-（总行数*（第几个周期）），（周期字母数量-该周期中第几个元素））
+ *
+ * 使用一个二维数组来存储字母的行位置信息和列位置信息，最后按照行顺序输出。
+ *
  * @param {string} s
  * @param {number} numRows
  * @return {string}
@@ -39,8 +48,13 @@ var convert = function (s, numRows){
     let r = 0;
     let count = 0;
     for (let i = 0; i < s.length; i++){
-        r = i===0?0:i % (rows * 2);
-        count=i===0?0:Math.floor(i / (rows * 2));
+        // r = i===0?0:i % (rows * 2);
+        // count=i===0?0:Math.floor(i / (rows * 2));
+        if(i===0){r = 0;count = 0}
+        else{
+            r = i%(rows * 2);
+            count = Math.floor(i / (rows * 2))
+        }
         if (r <= rows){
             if(!res[r]) res[r] = [];
             res[r][count*rows] = s[i];
