@@ -20,7 +20,6 @@
 var searchRange = function(nums, target) {
   let num = [-1,-1]
   let a = 0
-  if(nums.indexOf(target) === -1) return num
   for(let i in nums){
     if(nums[i] === target){
     if(a === 0){

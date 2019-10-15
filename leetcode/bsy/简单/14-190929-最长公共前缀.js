@@ -23,8 +23,9 @@
 var longestCommonPrefix = function(strs) {
     let i = 1
     let item = ''
+    if(strs.length == 0) return item
     if(strs.length>0){
-        let len = strs[0].split('').length
+        let len = strs[0].length
         let strlen = strs.length
         if(strs.length === 1){
             return strs[0]
