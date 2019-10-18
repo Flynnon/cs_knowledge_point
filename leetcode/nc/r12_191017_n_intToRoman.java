@@ -34,16 +34,106 @@ public class r12_191017_n_intToRoman {
     输入: 1994
     输出: "MCMXCIV"
     解释: M = 1000, CM = 900, XC = 90, IV = 4.
+        //int[] intArr= {1,5,10,50,100,500,1000,4,9,40,90,400,900};
+        //String[] romanArr = {"I","V","X","L","C","D","M","IV","IX","XL","XC","CD","CM"};
  */
 
+
+    public static void main(String[] args) {
+        r12_191017_n_intToRoman r = new r12_191017_n_intToRoman();
+        System.out.println(r.intToRoman(1994));
+    }
 
 
 
     public String intToRoman(int num) {
-        int[] intArr= {1,5,10,50,100,500,1000,4,9,40,90,400,900};
-        String[] romanArr = {"I","V","X","L","C","D","M","IV","IX","XL","XC","CD","CM"};
+        String roman = "";
+        for (int i=0; i>=0;) {
+            if (num / 1000 != 0) {
+                roman += "M";
+                num -= 1000;
+                i++;
+            } else if (num / 900 != 0) {
+                roman += "CM";
+                num -= 900;
+                i++;
+            } else if (num / 500 != 0) {
+                roman += "D";
+                num -= 500;
+                i++;
+            } else if (num / 400 != 0) {
+                roman += "CD";
+                num -= 400;
+                i++;
+            } else if (num / 100 != 0) {
+                roman += "C";
+                num -= 100;
+                i++;
+            } else if (num / 90 != 0) {
+                roman += "XC";
+                num -= 90;
+                i++;
+            } else if (num / 50 != 0) {
+                roman += "L";
+                num -= 50;
+                i++;
+            } else if (num / 40 != 0) {
+                roman += "XL";
+                num -= 40;
+                i++;
+            } else if (num / 10 != 0) {
+                roman += "X";
+                num -= 10;
+                i++;
+            } else if (num / 9 != 0) {
+                roman += "IX";
+                num -= 9;
+                i++;
+            } else if (num / 5 != 0) {
+                roman += "V";
+                num -= 5;
+                i++;
+            } else if (num / 4 != 0) {
+                roman += "IV";
+                num -= 4;
+                i++;
+            } else if (num / 1 != 0) {
+                roman += "I";
+                num -= 1;
+                i++;
+            } else {
+                break;
+            }
+        }
+        return roman;
+    }
 
-        return null;
+
+
+    //贪心算法
+    /*
+     复杂度分析：
+        时间复杂度：O（1）
+        空间复杂度：O（1）
+     */
+    public String intToRoman1(int num) {
+        // 把阿拉伯数字与罗马数字可能出现的所有情况和对应关系，放在两个数组中
+        // 并且按照阿拉伯数字的大小降序排列，这是贪心选择思想
+        int[] nums = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+        String[] romans = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
+
+        StringBuilder stringBuilder = new StringBuilder();
+        int index = 0;
+        while (index < 13) {
+            // 特别注意：这里是等号
+            while (num >= nums[index]) {
+                // 注意：这里是等于号，表示尽量使用大的"面值"
+                stringBuilder.append(romans[index] + " ");
+                num -= nums[index];
+            }
+            index++;
+        }
+        return stringBuilder.toString();
     }
 }
 
